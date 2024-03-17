@@ -1,5 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_import, unused_import
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:gorev_emre_hoca/model/product_model.dart';
 import 'package:gorev_emre_hoca/service/product_service.dart';
@@ -11,141 +13,160 @@ class DetailsPage extends StatelessWidget {
     required this.productModel,
   }) : super(key: key);
 
-  /*final List<Map<String, dynamic>> _listItem = [
-    {"image": 'assets/images/two.jpg', "isSaved": false},
-    {"image": 'assets/images/three.jpg', "isSaved": false},
-    {"image": 'assets/images/four.jpg', "isSaved": true},
-    {"image": 'assets/images/five.jpg', "isSaved": true},
-    {"image": 'assets/images/one.jpg', "isSaved": false},
-    {"image": 'assets/images/two.jpg', "isSaved": false},
-    {"image": 'assets/images/three.jpg', "isSaved": false},
-    {"image": 'assets/images/four.jpg', "isSaved": false},
-    {"image": 'assets/images/five.jpg', "isSaved": false},
-  ];*/
-
-  /* Future<List<ProductModel>> product = CategoryService.getCategoryData();*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[600],
+      backgroundColor: Color.fromARGB(255, 223, 220, 220),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              width: 36,
-              height: 30,
-              decoration: BoxDecoration(
-                  color: Colors.grey[800],
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Center(child: Text("0")),
-            ),
-          )
-        ],
       ),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: <Widget>[
-              Stack(children: [
-                Container(
-                  width: double.infinity,
-                  height: 350,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                          image: NetworkImage(productModel.image),
-                          fit: BoxFit.contain)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                            begin: Alignment.bottomRight,
-                            colors: [
-                              Colors.black.withOpacity(.4),
-                              Colors.black.withOpacity(.2),
-                            ])),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          height: 50,
-                          margin: const EdgeInsets.symmetric(horizontal: 40),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
-                          child: Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                productModel.title.toString().padRight(10),
-                                style: TextStyle(
-                                    color: Colors.grey[900],
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          )),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                      ],
-                    ),
-                  ),
+              titleContainerExtract(),
+              imageContainerExtract(),
+              descriptionCardExtract(),
+              buyButtonInkwellExtract(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Stack imageContainerExtract() {
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.all(9),
+          width: double.infinity,
+          height: 350,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                  image: NetworkImage(productModel.image),
+                  fit: BoxFit.contain)),
+          child: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(begin: Alignment.bottomRight, colors: [
+                  Colors.white.withOpacity(.4),
+                  Colors.white.withOpacity(.2),
+                ])),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: <Widget>[
+                SizedBox(
+                    height: 30,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Icon(Icons.favorite, color: Colors.red),
+                    )),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  InkWell buyButtonInkwellExtract() {
+    return InkWell(
+      onTap: () => print("Added to cart"),
+      child: Container(
+        margin: EdgeInsets.only(top: 40),
+        height: 54,
+        width: 355,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Color.fromARGB(255, 228, 89, 57),
+        ),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "BUY",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
-                Positioned(
-                  top: 150,
-                  bottom: 150,
-                  child: Container(
-                    height: 20,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white),
-                    child: Center(
-                      child: Text(
-                        productModel.price.toString() + 'TL',
-                        style: TextStyle(
-                            color: Colors.grey[900],
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-              ]),
-              const SizedBox(
-                height: 20,
               ),
-              Card(
-                elevation: 8,
-                child: Container(
-                  width: 700, // Container'ın genişliği
-                  height: 200, // Container'ın yüksekliği
-                  child: Center(
-                    child: Text(
-                      productModel.description,
-                      style: TextStyle(fontFamily: 'Yeniyazi', fontSize: 16),
-                    ),
-                  ),
+              Text(
+                '${productModel.price}TL',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
-                /* child: Text(
-                  productModel.description,
-                  style: TextStyle(fontFamily: 'Yeniyazi', fontSize: 16),
-                ),*/
+              ),
+              Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
               )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Card descriptionCardExtract() {
+    return Card(
+      color: const Color.fromARGB(255, 255, 255, 255),
+      elevation: 0,
+      child: SizedBox(
+        width: 700,
+        height: 200,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Text(
+              textAlign: TextAlign.center,
+              productModel.description,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container titleContainerExtract() {
+    return Container(
+      height: 60,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      child: Center(
+          child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 5,
+          ),
+          Expanded(
+            child: Text(
+              textAlign: TextAlign.center,
+              // ignore: deprecated_member_use
+              textScaleFactor: 0.8,
+              productModel.title.toString().padRight(10),
+              style: TextStyle(
+                color: Color.fromRGBO(1, 0, 53, 1),
+                fontWeight: FontWeight.bold,
+                fontSize: 26,
+              ),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

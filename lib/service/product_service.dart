@@ -18,21 +18,18 @@ class CategoryService {
         if (categoryList is List) {
           list = categoryList
               .map((e) {
-                print(
-                    "Processing item $e"); // Add this line for debugging
+                print("Processing item $e"); // Add this line for debugging
                 return ProductModel.fromJson(e);
               })
               .where((category) => category != null) // Filter out null values
               .cast<ProductModel>()
               .toList();
 
-          print(
-              "Parsed Category List: $list"); // Add this line for debugging
+          print("Parsed Category List: $list"); // Add this line for debugging
         }
       }
     } catch (e) {
-      print(
-          "Error fetching category data: $e");
+      print("Error fetching category data: $e");
     }
 
     return list;

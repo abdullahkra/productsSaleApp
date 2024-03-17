@@ -32,9 +32,7 @@ class _AllProductsState extends State<AllProducts> {
           ),
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-             
-            },
+            onPressed: () {},
           ),
         ],
         title: Text(
@@ -77,7 +75,10 @@ class _AllProductsState extends State<AllProducts> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DetailsPage(productModel: products,)),
+                MaterialPageRoute(
+                    builder: (context) => DetailsPage(
+                          productModel: products,
+                        )),
               );
             },
             child: GridTile(

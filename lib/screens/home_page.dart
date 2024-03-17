@@ -151,7 +151,10 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DetailsPage(productModel: products,)),
+                MaterialPageRoute(
+                    builder: (context) => DetailsPage(
+                          productModel: products,
+                        )),
               );
             },
             child: GridTile(

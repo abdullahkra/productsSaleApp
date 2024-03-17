@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/src/material/card.dart';
 
-List<ProductModel> ProductModelFromMap(String str) =>
-    List<ProductModel>.from(
+List<ProductModel> ProductModelFromMap(String str) => List<ProductModel>.from(
       json.decode(str).map((x) => ProductModel.fromMap(x)),
     );
 
