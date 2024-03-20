@@ -43,7 +43,10 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(20),
             child: Text(
               'view all',
-              style: TextStyle(color: Colors.brown),
+              style: TextStyle(
+                  color: Color.fromRGBO(255, 110, 78, 1),
+                  fontFamily: "Maven",
+                  fontWeight: FontWeight.bold),
             ),
           )
         ],
@@ -66,12 +69,15 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                         child: Text(
                           "Best Seller",
-                          style:
-                              TextStyle(fontFamily: "Yeniyazi", fontSize: 20),
+                          style: TextStyle(
+                              fontFamily: "Maven",
+                              fontSize: 25,
+                              fontWeight: FontWeight.w800),
                         ),
                       ),
                       Container(
-                        child: ElevatedButton(
+                        ////bu container önemli
+                        child: TextButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -81,8 +87,11 @@ class _HomePageState extends State<HomePage> {
                             );
                           },
                           child: Text(
-                            "All Products",
-                            style: TextStyle(color: Colors.brown),
+                            "see more",
+                            style: TextStyle(
+                                fontFamily: "Maven",
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(255, 110, 78, 1)),
                           ),
                         ),
                       ),
@@ -122,9 +131,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   style: TextStyle(
-                      fontFamily: "Yeniyazi",
-                      color: Colors.black,
-                      fontSize: 18),
+                    fontFamily: "Maven",
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                  ),
                   categories[index],
                   textAlign: TextAlign.center,
                 )
