@@ -1,5 +1,7 @@
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,11 +19,44 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<List<ProductModel>> _categoryListFuture;
+  late PageController _pageController;
+
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
     _categoryListFuture = CategoryService.getCategoryData();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose(); 
+    _timer.cancel(); 
+    super.dispose();
+  }
+
+  void _startTimer() {
+    const Duration pageChangeDuration = Duration(seconds: 5);
+    int totalPages = 3;
+    int currentPage = 0;
+
+    _timer = Timer.periodic(
+      pageChangeDuration,
+      (timer) {
+        if (currentPage < totalPages - 1) {
+          currentPage++;
+        } else {
+          currentPage = 0;
+        }
+        _pageController.animateToPage(
+          currentPage,
+          duration: Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      },
+    );
   }
 
   List<String> categories = [
@@ -56,6 +91,7 @@ class _HomePageState extends State<HomePage> {
         future: _categoryListFuture,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            _startTimer();
             return Column(
               children: [
                 Expanded(
@@ -68,6 +104,7 @@ class _HomePageState extends State<HomePage> {
                       left: 15,
                     ),
                     child: PageView(
+                      controller: _pageController,
                       children: [
                         Stack(
                           children: [
