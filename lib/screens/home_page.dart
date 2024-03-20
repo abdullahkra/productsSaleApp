@@ -1,5 +1,6 @@
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gorev_emre_hoca/model/product_model.dart';
@@ -59,6 +60,198 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: categoriesExtract(),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                    ),
+                    child: PageView(
+                      children: [
+                        Stack(
+                          children: [
+                            Image.asset(
+                              "assets/images/iphoneFoto.png",
+                            ),
+                            Positioned(
+                              top: 48,
+                              left: 30,
+                              child: Text(
+                                "Iphone 12",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Maven",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 80,
+                              left: 30,
+                              child: Text(
+                                "Súper. Mega. Rápido.",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 11),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 75,
+                              left: 30,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Buy now!",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 15,
+                              left: 30,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundColor:
+                                    Color.fromRGBO(255, 110, 78, 1),
+                                child: Text(
+                                  "New",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: "Maven",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Stack(
+                          children: [
+                            Image.asset(
+                              "assets/images/iphoneFoto.png",
+                            ),
+                            Positioned(
+                              top: 48,
+                              left: 30,
+                              child: Text(
+                                "Iphone 12",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Maven",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 80,
+                              left: 30,
+                              child: Text(
+                                "Súper. Mega. Rápido.",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 11),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 75,
+                              left: 30,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Buy now!",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 15,
+                              left: 30,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundColor:
+                                    Color.fromRGBO(255, 110, 78, 1),
+                                child: Text(
+                                  "New",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: "Maven",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Stack(
+                          children: [
+                            Image.asset(
+                              "assets/images/iphoneFoto.png",
+                            ),
+                            Positioned(
+                              top: 48,
+                              left: 30,
+                              child: Text(
+                                "Iphone 12",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Maven",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 80,
+                              left: 30,
+                              child: Text(
+                                "Súper. Mega. Rápido.",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 11),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 75,
+                              left: 30,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                child: Text(
+                                  "Buy now!",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 15,
+                              left: 30,
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundColor:
+                                    Color.fromRGBO(255, 110, 78, 1),
+                                child: Text(
+                                  "New",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontFamily: "Maven",
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
                   flex: 0.1.toInt(),
