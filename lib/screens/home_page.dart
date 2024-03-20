@@ -156,35 +156,42 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.all(15),
       child: GridView.count(
         crossAxisCount: 2,
-        children: List.generate(4, (index) {
-          var products = snapshot.data![index];
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
+        children: snapshot.data!.map((product) {
+          return Padding(
+            padding: EdgeInsets.all(8),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
                     builder: (context) => DetailsPage(
-                          productModel: products,
-                        )),
-              );
-            },
-            child: GridTile(
-              child: Image.network(products.image),
-              footer: GridTileBar(
-                trailing: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                    )),
-                leading: Text(products.id.toString()),
-                backgroundColor: Colors.black54,
-                title: Text(products.category.toString()),
-                subtitle: Text('\$${products.price.toString()}'),
+                      productModel: product,
+                    ),
+                  ),
+                );
+              },
+              child: Card(
+                color: Colors.white,
+                elevation: 0.3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: Image.network(
+                        product.image,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                    ListTile(
+                      subtitle: Text('${product.category.toString()}'),
+                      title: Text('\$${product.price.toString()}'),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
-        }),
+        }).toList(),
       ),
     );
   }
