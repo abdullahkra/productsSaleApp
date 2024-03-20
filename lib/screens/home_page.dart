@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(
           'Select Category',
-          style: TextStyle(fontFamily: 'Yeniyazi'),
+          style: TextStyle(fontFamily: 'Maven', fontWeight: FontWeight.bold),
         ),
         actions: const [
           Padding(

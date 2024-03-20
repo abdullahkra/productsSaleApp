@@ -65,6 +65,12 @@ flutter:
     - family: Yeniyazi
       fonts:
         - asset: assets/fonts/Agbalumo-Regular.ttf
+    - family: Maven
+      fonts:
+        - asset: assets/fonts/MavenPro-Bold.ttf
+        - weight: 700
+        - asset: assets/fonts/MavenPro-Regular.ttf
+        - weight: 400
 
   #   - family: Trajan Pro
   #     fonts:
