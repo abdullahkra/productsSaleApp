@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gorev_emre_hoca/consts/const_sabitler.dart';
 import 'package:gorev_emre_hoca/model/product_model.dart';
 import 'package:gorev_emre_hoca/screens/all_products_page.dart';
 import 'package:gorev_emre_hoca/screens/produc_details_page.dart';
@@ -16,11 +17,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<List<ProductModel>> _categoryListFuture;
+  late List<ProductModel> products = []; // Boş bir liste olarak başlatılır
 
   @override
   void initState() {
     super.initState();
     _categoryListFuture = CategoryService.getCategoryData();
+    _categoryListFuture.then((products) {
+      setState(() {
+        this.products = products;
+      });
+    });
+  }
+
+  void updateList(String value) {
+    setState(() {
+      products =
+          products.where((product) => product.category == value).toList();
+    });
   }
 
   List<String> categories = [
@@ -34,21 +48,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Select Category',
-          style: TextStyle(fontFamily: 'Maven', fontWeight: FontWeight.bold),
-        ),
         actions: const [
           Padding(
             padding: EdgeInsets.all(20),
             child: Text(
               'view all',
               style: TextStyle(
-                  color: Color.fromRGBO(255, 110, 78, 1),
-                  fontFamily: "Maven",
-                  fontWeight: FontWeight.bold),
+                color: Color.fromRGBO(255, 110, 78, 1),
+                fontFamily: "Maven",
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          )
+          ),
         ],
       ),
       body: FutureBuilder<List<ProductModel>>(
@@ -60,6 +71,7 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: categoriesExtract(),
                 ),
+                searchSekmesiExtract(),
                 Expanded(
                   flex: 0.1.toInt(),
                   child: Row(
@@ -91,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(
                                 fontFamily: "Maven",
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromRGBO(255, 110, 78, 1)),
+                                color: Sabitler.iconColor),
                           ),
                         ),
                       ),
@@ -113,6 +125,43 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
+    );
+  }
+
+  Row searchSekmesiExtract() {
+    return Row(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: TextField(
+              onChanged: (value) => updateList(value),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: Sabitler.borderRadiusSearch,
+                ),
+                hintText: "Search",
+                //hintStyle: TextStyle(color: Sabitler.iconColor),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Sabitler.iconColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+        IconButton(
+          padding: EdgeInsets.fromLTRB(0, 0, 50, 0),
+          color: Sabitler.iconColor,
+          // style: ButtonStyle(
+          //foregroundColor: MaterialStateProperty.all(
+          // Colors.yellow.shade900)),
+          icon: Icon(
+            Icons.qr_code,
+          ),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 
