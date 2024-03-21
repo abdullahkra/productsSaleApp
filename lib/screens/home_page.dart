@@ -121,241 +121,14 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Expanded(
                     flex: 0.5.toInt(),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          " Hot sales",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: "Maven",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "see more",
-                            style: TextStyle(
-                                color: Color.fromRGBO(255, 110, 78, 1),
-                                fontFamily: "Maven"),
-                          ),
-                        )
-                      ],
-                    )),
+                    child: hotSalesLineExtract()),
                 Expanded(
                   flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                    ),
-                    child: PageView(
-                      controller: _pageController,
-                      children: [
-                        Stack(
-                          children: [
-                            Image.asset(
-                              "assets/images/iphoneFoto.png",
-                            ),
-                            Positioned(
-                              top: 48,
-                              left: 30,
-                              child: Text(
-                                "Iphone 12",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Maven",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 80,
-                              left: 30,
-                              child: Text(
-                                "Súper. Mega. Rápido.",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 11),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 40,
-                              left: 30,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Buy now!",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 15,
-                              left: 30,
-                              child: CircleAvatar(
-                                radius: 15,
-                                backgroundColor:
-                                    Color.fromRGBO(255, 110, 78, 1),
-                                child: Text(
-                                  "New",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontFamily: "Maven",
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Stack(
-                          children: [
-                            Image.asset(
-                              "assets/images/macbook.png",
-                            ),
-                            Positioned(
-                              top: 20,
-                              left: 115,
-                              child: Text(
-                                "Macbook Pro",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: "Maven",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 40,
-                              left: 20,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Buy now!",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 15,
-                              left: 30,
-                              child: CircleAvatar(
-                                radius: 15,
-                                backgroundColor:
-                                    Color.fromRGBO(255, 110, 78, 1),
-                                child: Text(
-                                  "New",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontFamily: "Maven",
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Stack(
-                          children: [
-                            Center(
-                              child: Image.asset(
-                                "assets/images/airpods.jpg",
-                              ),
-                            ),
-                            Positioned(
-                              top: 30,
-                              left: 115,
-                              child: Text(
-                                "Airpods Max",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: "Maven",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 40,
-                              left: 10,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Buy now!",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 15,
-                              left: 30,
-                              child: CircleAvatar(
-                                radius: 15,
-                                backgroundColor:
-                                    Color.fromRGBO(255, 110, 78, 1),
-                                child: Text(
-                                  "New",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontFamily: "Maven",
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: pageViewExtract(),
                 ),
                 Expanded(
                   flex: 0.1.toInt(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        child: Text(
-                          "Best Seller",
-                          style: TextStyle(
-                              fontFamily: "Maven",
-                              fontSize: 25,
-                              fontWeight: FontWeight.w800),
-                        ),
-                      ),
-                      Container(
-                        ////bu container önemli
-                        child: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AllProducts(),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "see more",
-                            style: TextStyle(
-                                fontFamily: "Maven", color: Sabitler.iconColor),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: bestSellerLineExtract(context),
                 ),
                 Expanded(
                   flex: 3,
@@ -373,6 +146,271 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
+  }
+
+  Row hotSalesLineExtract() {
+    return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      " Hot sales",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontFamily: "Maven",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "see more",
+                        style: TextStyle(
+                            color: Color.fromRGBO(255, 110, 78, 1),
+                            fontFamily: "Maven"),
+                      ),
+                    )
+                  ],
+                );
+  }
+
+  Row bestSellerLineExtract(BuildContext context) {
+    return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      child: Text(
+                        "Best Seller",
+                        style: TextStyle(
+                            fontFamily: "Maven",
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                    Container(
+                      ////bu container önemli
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AllProducts(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "see more",
+                          style: TextStyle(
+                              fontFamily: "Maven", color: Sabitler.iconColor),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+  }
+
+  Padding pageViewExtract() {
+    return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: PageView(
+                    controller: _pageController,
+                    children: [
+                      Stack(
+                        children: [
+                          Image.asset(
+                            "assets/images/iphoneFoto.png",
+                          ),
+                          Positioned(
+                            top: 48,
+                            left: 30,
+                            child: Text(
+                              "Iphone 12",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: "Maven",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 80,
+                            left: 30,
+                            child: Text(
+                              "Súper. Mega. Rápido.",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 11),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 40,
+                            left: 30,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Buy now!",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 15,
+                            left: 30,
+                            child: CircleAvatar(
+                              radius: 15,
+                              backgroundColor:
+                                  Color.fromRGBO(255, 110, 78, 1),
+                              child: Text(
+                                "New",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: "Maven",
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Stack(
+                        children: [
+                          Image.asset(
+                            "assets/images/macbook.png",
+                          ),
+                          Positioned(
+                            top: 20,
+                            left: 115,
+                            child: Text(
+                              "Macbook Pro",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Maven",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 40,
+                            left: 20,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Buy now!",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 15,
+                            left: 30,
+                            child: CircleAvatar(
+                              radius: 15,
+                              backgroundColor:
+                                  Color.fromRGBO(255, 110, 78, 1),
+                              child: Text(
+                                "New",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: "Maven",
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Stack(
+                        children: [
+                          Center(
+                            child: Image.asset(
+                              "assets/images/airpods.jpg",
+                            ),
+                          ),
+                          Positioned(
+                            top: 30,
+                            left: 115,
+                            child: Text(
+                              "Airpods Max",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Maven",
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 40,
+                            left: 10,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Text(
+                                "Buy now!",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 15,
+                            left: 30,
+                            child: CircleAvatar(
+                              radius: 15,
+                              backgroundColor:
+                                  Color.fromRGBO(255, 110, 78, 1),
+                              child: Text(
+                                "New",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: "Maven",
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+  }
+
+  Row hotSalesLinesExtract() {
+    return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        " Hot sales",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "Maven",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "see more",
+                          style: TextStyle(
+                              color: Color.fromRGBO(255, 110, 78, 1),
+                              fontFamily: "Maven"),
+                        ),
+                      )
+                    ],
+                  );
   }
 
   Row searchSekmesiExtract() {
