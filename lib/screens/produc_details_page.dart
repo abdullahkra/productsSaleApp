@@ -22,15 +22,17 @@ class DetailsPage extends StatelessWidget {
         elevation: 0,
       ),
       body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: <Widget>[
-              titleContainerExtract(),
-              imageContainerExtract(),
-              descriptionCardExtract(),
-              buyButtonInkwellExtract(),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                titleContainerExtract(),
+                imageContainerExtract(),
+                descriptionCardExtract(),
+                buyButtonInkwellExtract(),
+              ],
+            ),
           ),
         ),
       ),

@@ -5,7 +5,7 @@ class CategoryService {
   static const String url = "https://fakestoreapi.com/products";
 
   static Future<List<ProductModel>> getCategoryData() async {
-    List<ProductModel> list = [];
+    List<ProductModel> listeler = [];
 
     try {
       var result = await Dio().get(url);
@@ -16,7 +16,7 @@ class CategoryService {
         print("Raw API Response: $categoryList"); // Add this line for debugging
 
         if (categoryList is List) {
-          list = categoryList
+          listeler = categoryList
               .map((e) {
                 print("Processing item $e"); // Add this line for debugging
                 return ProductModel.fromJson(e);
@@ -25,13 +25,13 @@ class CategoryService {
               .cast<ProductModel>()
               .toList();
 
-          print("Parsed Category List: $list"); // Add this line for debugging
+          print("Parsed Category List: $listeler"); // Add this line for debugging
         }
       }
     } catch (e) {
       print("Error fetching category data: $e");
     }
 
-    return list;
+    return listeler;
   }
 }
