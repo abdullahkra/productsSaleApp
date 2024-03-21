@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
 
   late Timer _timer;
 
+  late List<ProductModel> originalProducts;
   @override
   void initState() {
     _pageController = PageController();
@@ -33,16 +34,34 @@ class _HomePageState extends State<HomePage> {
     _categoryListFuture.then((products) {
       setState(() {
         this.products = products;
+        originalProducts = List.from(products);
       });
     });
   }
 
   void updateList(String value) {
-    setState(() {
-      products =
-          products.where((product) => product.category == value).toList();
+    _categoryListFuture.then((products) {
+      List<ProductModel> originalProducts = List.from(products);
+
+      setState(() {
+        setState(() {
+          products =
+              products.where((product) => product.category == value).toList();
+        });
+        setState(() {
+          products =
+              products.where((product) => product.category == value).toList();
+        });
+        _pageController = PageController();
+
+        products = originalProducts
+            .where((element) => element.category
+                .toString()
+                .toLowerCase()
+                .contains(value.toLowerCase()))
+            .toList();
+      });
     });
-    _pageController = PageController();
   }
 
   @override
@@ -409,7 +428,7 @@ class _HomePageState extends State<HomePage> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: TextField(
-              onChanged: (value) => updateList(value),
+              onChanged: (value) => updateList(value.toLowerCase()),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: Sabitler.borderRadiusSearch,
