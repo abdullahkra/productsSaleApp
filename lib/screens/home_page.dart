@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    _pageController = PageController();
     super.initState();
     _categoryListFuture = CategoryService.getCategoryData();
     _categoryListFuture.then((products) {
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _startTimer() {
-    const Duration pageChangeDuration = Duration(seconds: 5);
+    const Duration pageChangeDuration = Duration(seconds: 50);
     int totalPages = 3;
     int currentPage = 0;
 
@@ -84,6 +85,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Select Category",
+          style: TextStyle(
+            fontFamily: "Maven",
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        ),
         actions: const [
           Padding(
             padding: EdgeInsets.all(20),
@@ -107,7 +116,9 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: categoriesExtract(),
                 ),
-                searchSekmesiExtract(),
+                Expanded(
+                  child: searchSekmesiExtract(),
+                ),
                 Expanded(
                     flex: 0.5.toInt(),
                     child: Row(
@@ -170,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Positioned(
-                              bottom: 75,
+                              bottom: 40,
                               left: 30,
                               child: ElevatedButton(
                                 onPressed: () {},
@@ -220,24 +231,11 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            /* Positioned(
-                              top: 80,
-                              left: 30,
-                              child: Text(
-                                "Súper. Mega. Rápido.",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 11),
-                              ),
-                            ), */
                             Positioned(
-                              bottom: 75,
+                              bottom: 40,
                               left: 20,
                               child: ElevatedButton(
                                 onPressed: () {},
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all<Color>(
-                                            Colors.grey)),
                                 child: Text(
                                   "Buy now!",
                                   style: TextStyle(
@@ -352,9 +350,7 @@ class _HomePageState extends State<HomePage> {
                           child: Text(
                             "see more",
                             style: TextStyle(
-                                fontFamily: "Maven",
-                                
-                                color: Sabitler.iconColor),
+                                fontFamily: "Maven", color: Sabitler.iconColor),
                           ),
                         ),
                       ),
