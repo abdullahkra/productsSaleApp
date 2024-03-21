@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, unrelated_type_equality_checks, unnecessary_import
 //denemeortak1abd
 import 'dart:async';
 
@@ -183,21 +183,18 @@ class _HomePageState extends State<HomePage> {
                 fontFamily: "Maven", fontSize: 25, fontWeight: FontWeight.w800),
           ),
         ),
-        Container(
-          ////bu container önemli
-          child: TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AllProducts(),
-                ),
-              );
-            },
-            child: Text(
-              "see more",
-              style: TextStyle(fontFamily: "Maven", color: Sabitler.iconColor),
-            ),
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AllProducts(),
+              ),
+            );
+          },
+          child: Text(
+            "see more",
+            style: TextStyle(fontFamily: "Maven", color: Sabitler.iconColor),
           ),
         ),
       ],
@@ -506,7 +503,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
-                      subtitle: Text('${product.category.toString()}'),
+                      subtitle: Text(product.category.toString()),
                       title: Text('\$${product.price.toString()}'),
                     ),
                   ],
