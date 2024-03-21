@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _startTimer() {
-    const Duration pageChangeDuration = Duration(seconds: 50);
+    const Duration pageChangeDuration = Duration(seconds: 10);
     int totalPages = 3;
     int currentPage = 0;
 
