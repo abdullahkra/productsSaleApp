@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:async';
 
@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _pageController.dispose(); 
-    _timer.cancel(); 
+    _pageController.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
@@ -80,9 +80,9 @@ class _HomePageState extends State<HomePage> {
             child: Text(
               'view all',
               style: TextStyle(
-                  color: Color.fromRGBO(255, 110, 78, 1),
-                  fontFamily: "Maven",
-                  fontWeight: FontWeight.bold),
+                color: Color.fromRGBO(255, 110, 78, 1),
+                fontFamily: "Maven",
+              ),
             ),
           )
         ],
@@ -97,6 +97,31 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: categoriesExtract(),
                 ),
+                Expanded(
+                    flex: 0.5.toInt(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          " Hot sales",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontFamily: "Maven",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "see more",
+                            style: TextStyle(
+                                color: Color.fromRGBO(255, 110, 78, 1),
+                                fontFamily: "Maven"),
+                          ),
+                        )
+                      ],
+                    )),
                 Expanded(
                   flex: 2,
                   child: Padding(
@@ -169,22 +194,22 @@ class _HomePageState extends State<HomePage> {
                         Stack(
                           children: [
                             Image.asset(
-                              "assets/images/iphoneFoto.png",
+                              "assets/images/macbook.png",
                             ),
                             Positioned(
-                              top: 48,
-                              left: 30,
+                              top: 20,
+                              left: 115,
                               child: Text(
-                                "Iphone 12",
+                                "Macbook Pro",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: "Maven",
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
                                 ),
                               ),
                             ),
-                            Positioned(
+                            /* Positioned(
                               top: 80,
                               left: 30,
                               child: Text(
@@ -192,12 +217,16 @@ class _HomePageState extends State<HomePage> {
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 11),
                               ),
-                            ),
+                            ), */
                             Positioned(
                               bottom: 75,
-                              left: 30,
+                              left: 20,
                               child: ElevatedButton(
                                 onPressed: () {},
+                                style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.grey)),
                                 child: Text(
                                   "Buy now!",
                                   style: TextStyle(
@@ -228,16 +257,18 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Stack(
                           children: [
-                            Image.asset(
-                              "assets/images/iphoneFoto.png",
+                            Center(
+                              child: Image.asset(
+                                "assets/images/airpods.jpg",
+                              ),
                             ),
                             Positioned(
-                              top: 48,
-                              left: 30,
+                              top: 30,
+                              left: 115,
                               child: Text(
-                                "Iphone 12",
+                                "Airpods Max",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontFamily: "Maven",
                                   fontWeight: FontWeight.bold,
                                   fontSize: 25,
@@ -245,17 +276,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Positioned(
-                              top: 80,
-                              left: 30,
-                              child: Text(
-                                "Súper. Mega. Rápido.",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 11),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 75,
-                              left: 30,
+                              bottom: 40,
+                              left: 10,
                               child: ElevatedButton(
                                 onPressed: () {},
                                 child: Text(
@@ -320,7 +342,6 @@ class _HomePageState extends State<HomePage> {
                             "see more",
                             style: TextStyle(
                                 fontFamily: "Maven",
-                                fontWeight: FontWeight.bold,
                                 color: Color.fromRGBO(255, 110, 78, 1)),
                           ),
                         ),
