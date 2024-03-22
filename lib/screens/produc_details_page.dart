@@ -9,7 +9,7 @@ import 'package:gorev_emre_hoca/service/product_service.dart';
 
 class DetailsPage extends StatelessWidget {
   final ProductModel productModel;
-  DetailsPage({
+  const DetailsPage({
     Key? key,
     required this.productModel,
   }) : super(key: key);
@@ -96,7 +96,7 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              "${productModel.title}",
+                              productModel.title,
                               style: TextStyle(
                                 fontFamily: "Maven",
                                 fontSize: 24,
@@ -255,7 +255,7 @@ class DetailsPage extends StatelessWidget {
 
   InkWell buyButtonInkwellExtract() {
     return InkWell(
-      onTap: () => print("Added to cart"),
+      onTap: () => debugPrint("Added to cart"),
       child: Container(
         margin: EdgeInsets.only(top: 40),
         height: 54,

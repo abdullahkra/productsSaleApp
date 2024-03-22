@@ -96,7 +96,7 @@ class _AllProductsState extends State<AllProducts> {
                       ),
                     ),
                     ListTile(
-                      subtitle: Text('${product.category.toString()}'),
+                      subtitle: Text(product.category.toString()),
                       title: Text('\$${product.price.toString()}'),
                     ),
                   ],
