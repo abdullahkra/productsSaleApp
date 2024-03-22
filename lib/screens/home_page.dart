@@ -20,7 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<List<ProductModel>> _categoryListFuture;
-  late List<ProductModel> products = []; // Boş bir liste olarak başlatılır
+  late List<ProductModel> products = []; 
   late PageController _pageController;
   late TextEditingController _searchController;
   late Timer _timer;
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       print('Calismiyorsunnn');
       products = List.from(originalProducts);
     } else {
-      print('Urunleri buldun mu');
+      print('Urunleri buldum');
       products = originalProducts
           .where((product) =>
               product.title.toLowerCase().contains(query.toLowerCase()))
