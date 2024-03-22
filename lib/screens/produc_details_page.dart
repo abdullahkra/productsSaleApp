@@ -1,14 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_import, unused_import
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_import, unused_import, sort_child_properties_last
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gorev_emre_hoca/consts/const_sabitler.dart';
 
 import 'package:gorev_emre_hoca/model/product_model.dart';
 import 'package:gorev_emre_hoca/service/product_service.dart';
 
 class DetailsPage extends StatelessWidget {
   final ProductModel productModel;
-  DetailsPage({
+  const DetailsPage({
     Key? key,
     required this.productModel,
   }) : super(key: key);
@@ -16,21 +17,206 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 223, 220, 220),
+      //backgroundColor: Color.fromARGB(255, 223, 220, 220),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        leading: Container(
+          margin: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            color: Color.fromRGBO(1, 0, 53, 1),
+          ),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        actions: [
+          Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Sabitler.iconColor,
+            ),
+            child: Icon(
+              Icons.paste,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              "Product Details",
+              style: TextStyle(
+                  fontFamily: "Maven",
+                  fontWeight: FontWeight.w100,
+                  fontSize: 18,
+                  color: Color.fromRGBO(1, 0, 53, 1)),
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: <Widget>[
-              titleContainerExtract(),
-              imageContainerExtract(),
-              descriptionCardExtract(),
-              buyButtonInkwellExtract(),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: <Widget>[
+                /* titleContainerExtract(), */
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromRGBO(76, 95, 143, 0.1),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: imageContainerExtract(),
+                  margin: EdgeInsets.all(30),
+                  padding: EdgeInsets.all(10),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(76, 95, 143, 0.1),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
+                  height: 320,
+                  width: 450,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              productModel.title,
+                              style: TextStyle(
+                                fontFamily: "Maven",
+                                fontSize: 24,
+                                color: Color.fromRGBO(1, 0, 53, 1),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: CircleAvatar(
+                              child: Icon(
+                                Icons.favorite_border,
+                                color: Colors.white54,
+                                size: 20,
+                              ),
+                              backgroundColor: Color.fromRGBO(1, 0, 53, 1),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 0.2.toInt(),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0.2.toInt(),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0.2.toInt(),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0.2.toInt(),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 18,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 0.2.toInt(),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.star_border,
+                                size: 18,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Shop",
+                              style: TextStyle(
+                                  fontFamily: "Maven",
+                                  color: Color.fromRGBO(1, 0, 53, 1),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Details",
+                              style: TextStyle(
+                                  fontFamily: "Maven",
+                                  color: Color.fromRGBO(1, 0, 53, 1),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Features",
+                              style: TextStyle(
+                                  fontFamily: "Maven",
+                                  color: Color.fromRGBO(1, 0, 53, 1),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                )
+                /* descriptionCardExtract(), */
+                /* buyButtonInkwellExtract(), */
+              ],
+            ),
           ),
         ),
       ),
@@ -52,22 +238,14 @@ class DetailsPage extends StatelessWidget {
                   fit: BoxFit.contain)),
           child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(begin: Alignment.bottomRight, colors: [
+              borderRadius: BorderRadius.circular(20),
+              gradient: LinearGradient(
+                begin: Alignment.bottomRight,
+                colors: [
                   Colors.white.withOpacity(.4),
                   Colors.white.withOpacity(.2),
-                ])),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: <Widget>[
-                SizedBox(
-                    height: 30,
-                    child: InkWell(
-                      onTap: () {},
-                      child: Icon(Icons.favorite, color: Colors.red),
-                    )),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -77,7 +255,7 @@ class DetailsPage extends StatelessWidget {
 
   InkWell buyButtonInkwellExtract() {
     return InkWell(
-      onTap: () => print("Added to cart"),
+      onTap: () => debugPrint("Added to cart"),
       child: Container(
         margin: EdgeInsets.only(top: 40),
         height: 54,

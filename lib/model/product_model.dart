@@ -1,12 +1,14 @@
+// ignore_for_file: constant_identifier_names, implementation_imports
+
 import 'dart:convert';
 
 import 'package:flutter/src/material/card.dart';
 
-List<ProductModel> ProductModelFromMap(String str) => List<ProductModel>.from(
+List<ProductModel> productModelFromMap(String str) => List<ProductModel>.from(
       json.decode(str).map((x) => ProductModel.fromMap(x)),
     );
 
-String ProductModelToMap(List<ProductModel> data) =>
+String productModelToMap(List<ProductModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class ProductModel {
@@ -111,3 +113,4 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
+
