@@ -195,21 +195,18 @@ class _HomePageState extends State<HomePage> {
                 fontFamily: "Maven", fontSize: 25, fontWeight: FontWeight.w800),
           ),
         ),
-        Container(
-          ////bu container önemli
-          child: TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AllProducts(),
-                ),
-              );
-            },
-            child: Text(
-              "see more",
-              style: TextStyle(fontFamily: "Maven", color: Sabitler.iconColor),
-            ),
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AllProducts(),
+              ),
+            );
+          },
+          child: Text(
+            "see more",
+            style: TextStyle(fontFamily: "Maven", color: Sabitler.iconColor),
           ),
         ),
       ],
