@@ -1,5 +1,5 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, unrelated_type_equality_checks, unnecessary_import
-//denemeortak1abdsdsdsdsds
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
+//denemeortak1abdrustogüncel
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -22,38 +22,50 @@ class _HomePageState extends State<HomePage> {
   late Future<List<ProductModel>> _categoryListFuture;
   late List<ProductModel> products = []; // Boş bir liste olarak başlatılır
   late PageController _pageController;
-
+  late TextEditingController _searchController;
   late Timer _timer;
+  late List<ProductModel> originalProducts = [];
 
+/**********************************************************/
+  void updateSearch(String query) {
+    if (query.isEmpty) {
+      debugPrint('Calismiyorsunnn');
+      products = List.from(originalProducts);
+    } else {
+      debugPrint('Urunleri buldun mu');
+      products = originalProducts
+          .where((product) =>
+              product.title.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    setState(() {});
+  }
+
+  /****************************************************/
   @override
   void initState() {
-    _pageController = PageController();
     super.initState();
+    _searchController = TextEditingController();
     _categoryListFuture = CategoryService.getCategoryData();
     _categoryListFuture.then((products) {
       setState(() {
+        _pageController = PageController();
         this.products = products;
       });
     });
   }
 
-  void updateList(String value) {
-    setState(() {
-      products =
-          products.where((product) => product.category == value).toList();
-    });
-    _pageController = PageController();
-  }
-
   @override
   void dispose() {
+    _searchController.dispose();
     _pageController.dispose();
     _timer.cancel();
     super.dispose();
   }
 
+/********************************************/
   void _startTimer() {
-    const Duration pageChangeDuration = Duration(seconds: 10);
+    const Duration pageChangeDuration = Duration(seconds: 100);
     int totalPages = 3;
     int currentPage = 0;
 
@@ -399,40 +411,39 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Row searchSekmesiExtract() {
-    return Row(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: TextField(
-              onChanged: (value) => updateList(value),
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: Sabitler.borderRadiusSearch,
-                ),
-                hintText: "Search",
-                //hintStyle: TextStyle(color: Sabitler.iconColor),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Sabitler.iconColor,
+  searchSekmesiExtract() {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  onChanged: (query) => updateSearch(query),
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    hintText: "Search",
+                    border: OutlineInputBorder(
+                        borderRadius: Sabitler.borderRadiusSearch),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Sabitler.iconColor,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            IconButton(
+              padding: EdgeInsets.fromLTRB(0, 0, 50, 0),
+              color: Sabitler.iconColor,
+              icon: Icon(Icons.qr_code),
+              onPressed: () {},
+            ),
+          ],
         ),
-        IconButton(
-          padding: EdgeInsets.fromLTRB(0, 0, 50, 0),
-          color: Sabitler.iconColor,
-          // style: ButtonStyle(
-          //foregroundColor: MaterialStateProperty.all(
-          // Colors.yellow.shade900)),
-          icon: Icon(
-            Icons.qr_code,
-          ),
-          onPressed: () {},
-        ),
-      ],
+      ),
     );
   }
 
@@ -503,7 +514,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
-                      subtitle: Text(product.category.toString()),
+                      subtitle: Text('${product.title.toString()}'),
                       title: Text('\$${product.price.toString()}'),
                     ),
                   ],
