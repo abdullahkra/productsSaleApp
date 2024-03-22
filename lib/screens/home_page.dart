@@ -1,5 +1,5 @@
 // ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
-//denemeortak1abd
+//denemeortak1abdrustogüncel
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -29,10 +29,10 @@ class _HomePageState extends State<HomePage> {
 /**********************************************************/
   void updateSearch(String query) {
     if (query.isEmpty) {
-      print('Calismiyorsunnn');
+      debugPrint('Calismiyorsunnn');
       products = List.from(originalProducts);
     } else {
-      print('Urunleri buldun mu');
+      debugPrint('Urunleri buldun mu');
       products = originalProducts
           .where((product) =>
               product.title.toLowerCase().contains(query.toLowerCase()))
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
 
 /********************************************/
   void _startTimer() {
-    const Duration pageChangeDuration = Duration(seconds: 10);
+    const Duration pageChangeDuration = Duration(seconds: 100);
     int totalPages = 3;
     int currentPage = 0;
 
