@@ -126,22 +126,27 @@ class _HomePageState extends State<HomePage> {
             return Column(
               children: [
                 Expanded(
+                  flex: 4,
                   child: categoriesExtract(),
                 ),
                 Expanded(
+                  flex: 4,
                   child: searchSekmesiExtract(),
                 ),
-                Expanded(flex: 0.5.toInt(), child: hotSalesLineExtract()),
                 Expanded(
                   flex: 2,
+                  child: hotSalesLineExtract(),
+                ),
+                Expanded(
+                  flex: 8,
                   child: pageViewExtract(),
                 ),
                 Expanded(
-                  flex: 0.1.toInt(),
+                  flex: 2,
                   child: bestSellerLineExtract(context),
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 12,
                   child: productsExtract(snapshot),
                 ),
               ],
