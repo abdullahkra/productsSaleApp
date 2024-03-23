@@ -20,6 +20,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  bool isVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,16 +144,33 @@ class _DetailsPageState extends State<DetailsPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Shop",
-                              style: TextStyle(
-                                  fontFamily: "Maven",
-                                  color: Color.fromRGBO(1, 0, 53, 1),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isVisible = !isVisible;
+                                  });
+                                },
+                                child: Text(
+                                  "Shop",
+                                  style: TextStyle(
+                                      fontFamily: "Maven",
+                                      color: Color.fromRGBO(1, 0, 53, 1),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              ),
+                              Visibility(
+                                visible: isVisible,
+                                child: Container(
+                                  width: 100,
+                                  height: 100,
+                                  color: Sabitler.iconColor,
+                                ),
+                              )
+                            ],
                           ),
                           TextButton(
                             onPressed: () {},
