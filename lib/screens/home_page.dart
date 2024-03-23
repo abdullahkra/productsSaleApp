@@ -20,11 +20,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<List<ProductModel>> _categoryListFuture;
-  late List<ProductModel> products = []; 
-  late PageController _pageController;
   late TextEditingController _searchController;
-  late Timer _timer;
+  late List<ProductModel> products = [];
   late List<ProductModel> originalProducts = [];
+
+  late PageController _pageController;
+  late Timer _timer;
 
 /**********************************************************/
   void updateSearch(String query) {
@@ -37,6 +38,7 @@ class _HomePageState extends State<HomePage> {
           .where((product) =>
               product.title.toLowerCase().contains(query.toLowerCase()))
           .toList();
+      print(products);
     }
     setState(() {});
   }
@@ -50,7 +52,6 @@ class _HomePageState extends State<HomePage> {
     _categoryListFuture.then((products) {
       setState(() {
         _pageController = PageController();
-        this.products = products;
       });
     });
   }
@@ -158,7 +159,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Row hotSalesLineExtract() {
+  hotSalesLineExtract() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
