@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gorev_emre_hoca/consts/const_sabitler.dart';
-
 import 'package:gorev_emre_hoca/model/product_model.dart';
 import 'package:gorev_emre_hoca/service/product_service.dart';
-
+//ddd
 class DetailsPage extends StatefulWidget {
   final ProductModel productModel;
   const DetailsPage({
