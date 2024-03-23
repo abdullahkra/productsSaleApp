@@ -1,5 +1,5 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
-//denemeortak1abdrustogüncel
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import
+//denemeortak1abdrustogüncel04:25
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   late Timer _timer;
   late List<ProductModel> originalProducts = [];
 
-/**********************************************************/
+//**********************************************************
   void updateSearch(String query) {
     if (query.isEmpty) {
       debugPrint('Calismiyorsunnn');
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  /****************************************************/
+  //****************************************************
   @override
   void initState() {
     super.initState();
@@ -64,9 +64,9 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-/********************************************/
+//********************************************
   void _startTimer() {
-    const Duration pageChangeDuration = Duration(seconds: 100);
+    const Duration pageChangeDuration = Duration(seconds: 5);
     int totalPages = 3;
     int currentPage = 0;
 
@@ -126,25 +126,31 @@ class _HomePageState extends State<HomePage> {
             _startTimer();
             return Column(
               children: [
-                Expanded(
+                Flexible(
+                  flex: 4,
                   child: categoriesExtract(),
                 ),
-                Expanded(
+                Flexible(
+                  flex: 4,
                   child: searchSekmesiExtract(),
                 ),
-                Expanded(flex: 0.5.toInt(), child: hotSalesLineExtract()),
-                Expanded(
+                Flexible(
                   flex: 2,
+                  child: hotSalesLineExtract(),
+                ),
+                Flexible(
+                  flex: 8,
                   child: pageViewExtract(),
                 ),
-                Expanded(
-                  flex: 0.1.toInt(),
+                Flexible(
+                  flex: 2,
                   child: bestSellerLineExtract(context),
                 ),
-                Expanded(
-                  flex: 3,
-                  child: productsExtract(snapshot),
-                ),
+                if (snapshot.data != null)
+                  Flexible(
+                    flex: 12,
+                    child: productsExtract(snapshot),
+                  ),
               ],
             );
           } else if (snapshot.hasError) {
@@ -183,6 +189,7 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+  
 
   Row bestSellerLineExtract(BuildContext context) {
     return Row(
@@ -486,44 +493,46 @@ class _HomePageState extends State<HomePage> {
   Padding productsExtract(AsyncSnapshot<List<ProductModel>> snapshot) {
     return Padding(
       padding: EdgeInsets.all(15),
-      child: GridView.count(
-        crossAxisCount: 2,
-        children: snapshot.data!.map((product) {
-          return Padding(
-            padding: EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailsPage(
-                      productModel: product,
+      child: GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, childAspectRatio: 0.7),
+        itemCount: snapshot.data!.length < 4 ? snapshot.data!.length : 4,
+        itemBuilder: (context, index) => Padding(
+          padding: EdgeInsets.all(8),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    productModel: snapshot.data![index],
+                  ),
+                ),
+              );
+            },
+            child: Card(
+              color: Colors.white,
+              //elevation: 0.3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      snapshot.data![index].image,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                );
-              },
-              child: Card(
-                color: Colors.white,
-                elevation: 0.3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      child: Image.network(
-                        product.image,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    ListTile(
-                      subtitle: Text('${product.title.toString()}'),
-                      title: Text('\$${product.price.toString()}'),
-                    ),
-                  ],
-                ),
+                  ListTile(
+                    // ignore: unnecessary_string_interpolations
+                    subtitle: Text(snapshot.data![index].title),
+                    title: Text(snapshot.data![index].price.toString()),
+                  ),
+                ],
               ),
             ),
-          );
-        }).toList(),
+          ),
+        ),
       ),
     );
   }

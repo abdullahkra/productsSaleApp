@@ -2,18 +2,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gorev_emre_hoca/consts/const_sabitler.dart';
-
 import 'package:gorev_emre_hoca/model/product_model.dart';
 import 'package:gorev_emre_hoca/service/product_service.dart';
 
-class DetailsPage extends StatelessWidget {
+//ddd
+class DetailsPage extends StatefulWidget {
   final ProductModel productModel;
   const DetailsPage({
     Key? key,
     required this.productModel,
   }) : super(key: key);
 
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  bool isVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +103,7 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              productModel.title,
+                              widget.productModel.title,
                               style: TextStyle(
                                 fontFamily: "Maven",
                                 fontSize: 24,
@@ -118,73 +125,53 @@ class DetailsPage extends StatelessWidget {
                         ],
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Expanded(
-                            flex: 0.2.toInt(),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.star_border,
-                                size: 18,
-                              ),
+                          RatingBar(
+                            ratingWidget: RatingWidget(
+                              full: Icon(Icons.star,
+                                  color: Color.fromRGBO(255, 184, 0, 1)),
+                              half: Icon(Icons.star_half),
+                              empty: Icon(Icons.star_border),
                             ),
+                            initialRating: widget.productModel.rating.rate,
+                            itemSize: 18,
+                            onRatingUpdate: (rating) {
+                              setState(() {});
+                            },
                           ),
-                          Expanded(
-                            flex: 0.2.toInt(),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.star_border,
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 0.2.toInt(),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.star_border,
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 0.2.toInt(),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.star_border,
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 0.2.toInt(),
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.star_border,
-                                size: 18,
-                              ),
-                            ),
-                          )
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Shop",
-                              style: TextStyle(
-                                  fontFamily: "Maven",
-                                  color: Color.fromRGBO(1, 0, 53, 1),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isVisible = !isVisible;
+                                  });
+                                },
+                                child: Text(
+                                  "Shop",
+                                  style: TextStyle(
+                                      fontFamily: "Maven",
+                                      color: Color.fromRGBO(1, 0, 53, 1),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                              ),
+                              Visibility(
+                                visible: isVisible,
+                                child: Container(
+                                  width: 100,
+                                  //MediaQuery.of(context).size.width * 0.8,
+                                  height: 100,
+                                  color: Sabitler.iconColor,
+                                ),
+                              )
+                            ],
                           ),
                           TextButton(
                             onPressed: () {},
@@ -234,7 +221,7 @@ class DetailsPage extends StatelessWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
-                  image: NetworkImage(productModel.image),
+                  image: NetworkImage(widget.productModel.image),
                   fit: BoxFit.contain)),
           child: Container(
             decoration: BoxDecoration(
@@ -277,7 +264,7 @@ class DetailsPage extends StatelessWidget {
                 ),
               ),
               Text(
-                '${productModel.price}TL',
+                '${widget.productModel.price}TL',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -306,7 +293,7 @@ class DetailsPage extends StatelessWidget {
           child: Center(
             child: Text(
               textAlign: TextAlign.center,
-              productModel.description,
+              widget.productModel.description,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
@@ -335,7 +322,7 @@ class DetailsPage extends StatelessWidget {
               textAlign: TextAlign.center,
               // ignore: deprecated_member_use
               textScaleFactor: 0.8,
-              productModel.title.toString().padRight(10),
+              widget.productModel.title.toString().padRight(10),
               style: TextStyle(
                 color: Color.fromRGBO(1, 0, 53, 1),
                 fontWeight: FontWeight.bold,
@@ -347,4 +334,6 @@ class DetailsPage extends StatelessWidget {
       )),
     );
   }
+
+  void onRatingUpdate(double rating) {}
 }
