@@ -1,5 +1,5 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
-//denemeortak1abdrustogüncel
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import
+//denemeortak1abdrustogüncel04:25
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -20,14 +20,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Future<List<ProductModel>> _categoryListFuture;
+  late List<ProductModel> products = []; // Boş bir liste olarak başlatılır
+  late PageController _pageController;
   late TextEditingController _searchController;
-  late List<ProductModel> products = [];
+  late Timer _timer;
   late List<ProductModel> originalProducts = [];
 
-  late PageController _pageController;
-  late Timer _timer;
-
-/**********************************************************/
+//**********************************************************
   void updateSearch(String query) {
     if (query.isEmpty) {
       debugPrint('Calismiyorsunnn');
@@ -38,12 +37,11 @@ class _HomePageState extends State<HomePage> {
           .where((product) =>
               product.title.toLowerCase().contains(query.toLowerCase()))
           .toList();
-      print(products);
     }
     setState(() {});
   }
 
-  /****************************************************/
+  //****************************************************
   @override
   void initState() {
     super.initState();
@@ -52,6 +50,8 @@ class _HomePageState extends State<HomePage> {
     _categoryListFuture.then((products) {
       setState(() {
         _pageController = PageController();
+        this.products = products;
+        originalProducts = List.from(products);
       });
     });
   }
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-/********************************************/
+//********************************************
   void _startTimer() {
     const Duration pageChangeDuration = Duration(seconds: 100);
     int totalPages = 3;
@@ -127,22 +127,27 @@ class _HomePageState extends State<HomePage> {
             return Column(
               children: [
                 Expanded(
+                  flex: 4,
                   child: categoriesExtract(),
                 ),
                 Expanded(
+                  flex: 4,
                   child: searchSekmesiExtract(),
                 ),
-                Expanded(flex: 0.5.toInt(), child: hotSalesLineExtract()),
                 Expanded(
                   flex: 2,
+                  child: hotSalesLineExtract(),
+                ),
+                Expanded(
+                  flex: 8,
                   child: pageViewExtract(),
                 ),
                 Expanded(
-                  flex: 0.1.toInt(),
+                  flex: 2,
                   child: bestSellerLineExtract(context),
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 12,
                   child: productsExtract(snapshot),
                 ),
               ],
@@ -159,7 +164,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  hotSalesLineExtract() {
+  Row hotSalesLineExtract() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -515,6 +520,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
+                      // ignore: unnecessary_string_interpolations
                       subtitle: Text('${product.title.toString()}'),
                       title: Text('\$${product.price.toString()}'),
                     ),
