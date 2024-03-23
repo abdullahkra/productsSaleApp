@@ -1,5 +1,5 @@
-// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables
-//denemeortak1abdrustogüncel
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_import
+//denemeortak1abdrustogüncel04:25
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   late Timer _timer;
   late List<ProductModel> originalProducts = [];
 
-/**********************************************************/
+//**********************************************************
   void updateSearch(String query) {
     if (query.isEmpty) {
       debugPrint('Calismiyorsunnn');
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
-  /****************************************************/
+  //****************************************************
   @override
   void initState() {
     super.initState();
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-/********************************************/
+//********************************************
   void _startTimer() {
     const Duration pageChangeDuration = Duration(seconds: 100);
     int totalPages = 3;
@@ -514,6 +514,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     ListTile(
+                      // ignore: unnecessary_string_interpolations
                       subtitle: Text('${product.title.toString()}'),
                       title: Text('\$${product.price.toString()}'),
                     ),
