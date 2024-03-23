@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
 
 //********************************************
   void _startTimer() {
-    const Duration pageChangeDuration = Duration(seconds: 100);
+    const Duration pageChangeDuration = Duration(seconds: 5);
     int totalPages = 3;
     int currentPage = 0;
 
@@ -125,30 +125,31 @@ class _HomePageState extends State<HomePage> {
             _startTimer();
             return Column(
               children: [
-                Expanded(
+                Flexible(
                   flex: 4,
                   child: categoriesExtract(),
                 ),
-                Expanded(
+                Flexible(
                   flex: 4,
                   child: searchSekmesiExtract(),
                 ),
-                Expanded(
+                Flexible(
                   flex: 2,
                   child: hotSalesLineExtract(),
                 ),
-                Expanded(
+                Flexible(
                   flex: 8,
                   child: pageViewExtract(),
                 ),
-                Expanded(
+                Flexible(
                   flex: 2,
                   child: bestSellerLineExtract(context),
                 ),
-                Expanded(
-                  flex: 12,
-                  child: productsExtract(snapshot),
-                ),
+                if (snapshot.data != null)
+                  Flexible(
+                    flex: 12,
+                    child: productsExtract(snapshot),
+                  ),
               ],
             );
           } else if (snapshot.hasError) {
@@ -187,6 +188,7 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+  
 
   Row bestSellerLineExtract(BuildContext context) {
     return Row(
@@ -490,45 +492,46 @@ class _HomePageState extends State<HomePage> {
   Padding productsExtract(AsyncSnapshot<List<ProductModel>> snapshot) {
     return Padding(
       padding: EdgeInsets.all(15),
-      child: GridView.count(
-        crossAxisCount: 2,
-        children: snapshot.data!.map((product) {
-          return Padding(
-            padding: EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailsPage(
-                      productModel: product,
+      child: GridView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, childAspectRatio: 0.7),
+        itemCount: snapshot.data!.length < 4 ? snapshot.data!.length : 4,
+        itemBuilder: (context, index) => Padding(
+          padding: EdgeInsets.all(8),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    productModel: snapshot.data![index],
+                  ),
+                ),
+              );
+            },
+            child: Card(
+              color: Colors.white,
+              //elevation: 0.3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      snapshot.data![index].image,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                );
-              },
-              child: Card(
-                color: Colors.white,
-                elevation: 0.3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      child: Image.network(
-                        product.image,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    ListTile(
-                      // ignore: unnecessary_string_interpolations
-                      subtitle: Text('${product.title.toString()}'),
-                      title: Text('\$${product.price.toString()}'),
-                    ),
-                  ],
-                ),
+                  ListTile(
+                    // ignore: unnecessary_string_interpolations
+                    subtitle: Text(snapshot.data![index].title),
+                    title: Text(snapshot.data![index].price.toString()),
+                  ),
+                ],
               ),
             ),
-          );
-        }).toList(),
+          ),
+        ),
       ),
     );
   }

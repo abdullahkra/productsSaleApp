@@ -6,6 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gorev_emre_hoca/consts/const_sabitler.dart';
 import 'package:gorev_emre_hoca/model/product_model.dart';
 import 'package:gorev_emre_hoca/service/product_service.dart';
+
 //ddd
 class DetailsPage extends StatefulWidget {
   final ProductModel productModel;
@@ -165,6 +166,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 visible: isVisible,
                                 child: Container(
                                   width: 100,
+                                  //MediaQuery.of(context).size.width * 0.8,
                                   height: 100,
                                   color: Sabitler.iconColor,
                                 ),
